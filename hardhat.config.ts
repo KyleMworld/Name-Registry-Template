@@ -3,6 +3,7 @@ import "hardhat-deploy";
 import type { HardhatUserConfig } from "hardhat/config";
 import { vars } from "hardhat/config";
 import type { NetworkUserConfig } from "hardhat/types";
+import "@nomicfoundation/hardhat-verify";
 
 import "./tasks/accounts";
 import "./tasks/lock";
