@@ -58,10 +58,7 @@ const config: HardhatUserConfig = {
     apiKey: {
       sepolia: vars.get("ETHERSCAN_API_KEY"),
     },
-    sourcify: {
-    // This removes the "Sourcify Verification Skipped" message
-    enabled: false
-  },
+    
 
   },
   gasReporter: {
