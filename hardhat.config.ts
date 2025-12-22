@@ -58,10 +58,6 @@ const config: HardhatUserConfig = {
     apiKey: {
       sepolia: vars.get("ETHERSCAN_API_KEY"),
     },
-    
-  sourcify: {
-    enabled: false // Removes the Sourcify "INFO" message
-  },
 
   },
   gasReporter: {
