@@ -48,6 +48,6 @@ contract NameRegistry {
     // }
 
     function getName(address user) external view returns (string memory) {
-        return ownerToNames[user];
+        return ownerToNames[user][];
     }
 }
