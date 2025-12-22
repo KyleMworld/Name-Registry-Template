@@ -59,7 +59,7 @@ const config: HardhatUserConfig = {
       sepolia: vars.get("ETHERSCAN_API_KEY"),
     },
     
-    sourcify: {
+  sourcify: {
     enabled: false // Removes the Sourcify "INFO" message
   },
 
