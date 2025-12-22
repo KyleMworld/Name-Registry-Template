@@ -17,11 +17,11 @@ contract NameRegistry {
     }
 
 
-    function registerName(string calldata name) external {
-        require(bytes(names[msg.sender]).length == 0, "Name already registered");
-        names[msg.sender] = name;
-        emit NameRegistered(msg.sender, name);
-    }
+    // function registerName(string calldata name) external {
+    //     require(bytes(names[msg.sender]).length == 0, "Name already registered");
+    //     names[msg.sender] = name;
+    //     emit NameRegistered(msg.sender, name);
+    // }
 
     function releaseName(string calldata name) external {
         require(nameToOwner[name] == msg.sender, "Not the owner of the name");
