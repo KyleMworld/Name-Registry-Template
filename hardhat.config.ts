@@ -59,6 +59,9 @@ const config: HardhatUserConfig = {
       apiKey: vars.get("ETHERSCAN_API_KEY"),
     },
     
+    sourcify: {
+    enabled: false // Removes the Sourcify "INFO" message
+  },
 
   },
   gasReporter: {
