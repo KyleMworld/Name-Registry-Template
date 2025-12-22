@@ -57,6 +57,12 @@ const config: HardhatUserConfig = {
     apiKey: {
       sepolia: vars.get("ETHERSCAN_API_KEY", ""),
     },
+
+  sourcify: {
+  // This removes the "Sourcify Skip" message from your terminal
+  enabled: false
+},
+
   },
   gasReporter: {
     currency: "USD",
