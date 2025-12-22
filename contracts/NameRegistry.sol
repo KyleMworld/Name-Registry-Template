@@ -33,7 +33,11 @@ contract NameRegistry {
         emit NameUpdated(msg.sender, name, "");
     }
 
-    function getName(address user) external view returns (string[] memory) {
+    function getMyNames(address user) external view returns (string[] memory) {
         return ownerToNames[user];
+    }
+
+     function getOwner(string calldata name) external view returns (address) {
+        return nameToOwner[name];
     }
 }
