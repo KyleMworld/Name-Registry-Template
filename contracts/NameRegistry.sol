@@ -2,7 +2,6 @@
 pragma solidity ^0.8.18;
 
 contract NameRegistry {
-    //mapping(address => string) private names;
     mapping(string => address) private nameToOwner;
     mapping(address => string[]) private ownerToNames;
 
@@ -16,12 +15,6 @@ contract NameRegistry {
         emit NameRegistered(msg.sender, name);
     }
 
-
-    // function registerName(string calldata name) external {
-    //     require(bytes(names[msg.sender]).length == 0, "Name already registered");
-    //     names[msg.sender] = name;
-    //     emit NameRegistered(msg.sender, name);
-    // }
 
     function releaseName(string calldata name) external {
         require(nameToOwner[name] == msg.sender, "Not the owner of the name");
@@ -39,13 +32,6 @@ contract NameRegistry {
 
         emit NameUpdated(msg.sender, name, "");
     }
-
-    // function updateName(string calldata newName) external {
-    //     string memory oldName = names[msg.sender];
-    //     require(bytes(oldName).length != 0, "No name registered");
-    //     names[msg.sender] = newName;
-    //     emit NameUpdated(msg.sender, oldName, newName);
-    // }
 
     function getName(address user) external view returns (string[] memory) {
         return ownerToNames[user];
