@@ -25,7 +25,7 @@ describe("NameRegistry", function () {
       // Requirement 2: No other user can claim it
       await expect(
         registry.connect(otherAccount).claimName("bitcoin")
-      ).to.be.revertedWith("Name already claimed by someone else");
+      ).to.be.revertedWith("Name already claimed");
     });
 
     it("Should allow a user to claim multiple names", async function () {
@@ -54,7 +54,7 @@ describe("NameRegistry", function () {
       // Requirement 3: A name OWNER can release a name
       await expect(
         registry.connect(otherAccount).releaseName("protected")
-      ).to.be.revertedWith("You don't own this name");
+      ).to.be.revertedWith("Not the owner of the name");
     });
 
     it("Should allow a name to be re-claimed after being released", async function () {
