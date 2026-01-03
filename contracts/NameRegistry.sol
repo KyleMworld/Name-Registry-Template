@@ -1,7 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
+/// @title Name Registry Contract
+/// @author Kyle Monaghan
+/// @notice This contract allows users to claim and manage unique names.
 contract NameRegistry {
+    /// @notice Mapping from names to their respective owners
     mapping(string => address) private nameToOwner;
     mapping(address => string[]) private ownerToNames;
 
