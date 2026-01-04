@@ -2,46 +2,36 @@
 pragma solidity ^0.8.18;
 
 /// @title Name Registry Contract
-/// @author Kyle Monaghan
-/// @notice This contract allows users to claim and manage unique names.
+/// @notice This contract allows users to claim and manage unique names and attach them to their addresses.
 contract NameRegistry {
-    /// @notice Mapping from names to their respective owners
-    mapping(string => address) private nameToOwner;
-    mapping(address => string[]) private ownerToNames;
+    /// @dev Mapping from names to their respective owners
+    mapping(string => address) public nameToOwner;
 
+    /// @dev Event emitted when a name is registered
     event NameRegistered(address indexed user, string name);
-    event NameUpdated(address indexed user, string oldName, string newName);
+    /// @dev Event emitted when a name is released
+    event NameReleased(address indexed user, string name);
 
+    /// @notice Claim a unique name
+    /// @param name The name to be claimed
+    /// @dev Reverts if the name is already claimed
+    /// @dev Emits a NameRegistered event upon successful registration
     function claimName(string calldata name) external {
         require(nameToOwner[name] == address(0), "Name already claimed");
         nameToOwner[name] = msg.sender;
-        ownerToNames[msg.sender].push(name);
         emit NameRegistered(msg.sender, name);
     }
 
 
+    /// @notice Release a claimed name
+    /// @param name The name to be released
+    /// @dev Reverts if the caller is not the owner of the name
     function releaseName(string calldata name) external {
         require(nameToOwner[name] == msg.sender, "Not the owner of the name");
         delete nameToOwner[name];
 
-        // Remove name from owner's list
-        string[] storage namesList = ownerToNames[msg.sender];
-        for (uint i = 0; i < namesList.length; i++) {
-            if (keccak256(bytes(namesList[i])) == keccak256(bytes(name))) {
-                namesList[i] = namesList[namesList.length - 1];
-                namesList.pop();
-                break;
-            }
-        }
-
-        emit NameUpdated(msg.sender, name, "");
+        /// @dev Emit event indicating the name has been released
+        emit NameReleased(msg.sender, name);
     }
 
-    function getMyNames(address user) external view returns (string[] memory) {
-        return ownerToNames[user];
-    }
-
-     function getOwner(string calldata name) external view returns (address) {
-        return nameToOwner[name];
-    }
 }
